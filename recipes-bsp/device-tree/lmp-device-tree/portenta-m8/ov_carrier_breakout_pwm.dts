@@ -1,0 +1,77 @@
+/**
+ * Portenta-M8 dtb overlay file
+ * Arduino 2021
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include "imx8mm-pinfunc.h"
+
+/ {
+	compatible = "fsl,imx8mm-evk", "fsl,imx8mm";
+
+	fragment@0 {
+		target = <&iomuxc>;
+		__overlay__ {
+			imx8mm {
+				pinctrl_pwm1: pwm1grp {
+					fsl,pins = <
+						MX8MM_IOMUXC_GPIO1_IO01_PWM1_OUT			0x140
+					>;
+				};
+				pinctrl_pwm2: pwm2grp {
+					fsl,pins = <
+						MX8MM_IOMUXC_GPIO1_IO13_PWM2_OUT			0x140
+					>;
+				};
+				pinctrl_pwm3: pwm3grp {
+					fsl,pins = <
+						MX8MM_IOMUXC_GPIO1_IO14_PWM3_OUT			0x140
+					>;
+				};
+				pinctrl_pwm4: pwm4grp {
+					fsl,pins = <
+						MX8MM_IOMUXC_GPIO1_IO15_PWM4_OUT			0x140
+					>;
+				};
+			};
+		};
+	};
+
+	fragment@1 {
+		target = <&pwm1>;
+		__overlay__ {
+			pinctrl-names = "default";
+			pinctrl-0 = <&pinctrl_pwm1>;
+			status = "okay";
+		};
+	};
+
+	fragment@2 {
+		target = <&pwm2>;
+		__overlay__ {
+			pinctrl-names = "default";
+			pinctrl-0 = <&pinctrl_pwm2>;
+			status = "okay";
+		};
+	};
+
+	fragment@3 {
+		target = <&pwm3>;
+		__overlay__ {
+			pinctrl-names = "default";
+			pinctrl-0 = <&pinctrl_pwm3>;
+			status = "okay";
+		};
+	};
+
+	fragment@4 {
+		target = <&pwm4>;
+		__overlay__ {
+			pinctrl-names = "default";
+			pinctrl-0 = <&pinctrl_pwm4>;
+			status = "okay";
+		};
+	};
+};
